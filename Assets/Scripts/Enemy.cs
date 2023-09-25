@@ -7,13 +7,28 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        EnemyManager.instance.AddEnemy(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //slow Random movement
-        transform.Translate(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f));
+        // move the enemy forwards
+        GetComponent<Rigidbody>().position += transform.forward * Time.deltaTime * 0.5f;
+        
+    }
+    private void OnDestroy()
+    {
+        EnemyManager.instance.RemoveEnemy(this);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if (other.gameObject.tag == "PlayerProjectile")
+        {
+            GetComponent<Life>().life -= 1;
+            Destroy(other.gameObject);
+        }
     }
 }

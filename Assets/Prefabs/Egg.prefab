@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 384797289208027681}
   - component: {fileID: 3079183686818630889}
   - component: {fileID: 500611227124863919}
-  - component: {fileID: 5384628907878297868}
   - component: {fileID: 7473970377162212294}
-  m_Layer: 0
+  - component: {fileID: 5342478599843238140}
+  m_Layer: 8
   m_Name: Egg
-  m_TagString: Untagged
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2274,8 +2274,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2628655772143693254}
   m_Mesh: {fileID: 0}
---- !u!64 &5384628907878297868
-MeshCollider:
+--- !u!114 &7473970377162212294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2628655772143693254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5042480c2d9af38428611778666f61f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  lifetime: 1
+--- !u!136 &5342478599843238140
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2292,21 +2306,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
---- !u!114 &7473970377162212294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2628655772143693254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5042480c2d9af38428611778666f61f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  lifetime: 1
+  serializedVersion: 2
+  m_Radius: 0.3984375
+  m_Height: 0.92286146
+  m_Direction: 1
+  m_Center: {x: 0.39844465, y: 0.4614303, z: 0.34837794}

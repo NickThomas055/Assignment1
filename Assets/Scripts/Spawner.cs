@@ -12,8 +12,9 @@ public class Spawner : MonoBehaviour
     public GameObject enemyPrefab;
     void Start()
     {
+        WaveManager.instance.waves.Add(this);
         InvokeRepeating("Spawn", 0, 1);
-        Invoke("CancelInvoke", 10);
+        Invoke("EndSpawner", 10);
     }
 
     // Update is called once per frame
@@ -21,6 +22,10 @@ public class Spawner : MonoBehaviour
     {
         
 
+    }
+    void EndSpawner(){
+        WaveManager.instance.waves.Remove(this);
+        Destroy(this.gameObject);
     }
 
     void Spawn(){
@@ -30,7 +35,7 @@ public class Spawner : MonoBehaviour
         
 
         // Spawn an enemy at that position
-        GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
-        Destroy(enemy, 5);
+        GameObject enemy = Instantiate(enemyPrefab, position, transform.rotation);
+        Destroy(enemy, 100);
     }
 }

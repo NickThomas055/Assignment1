@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 3889374380502902365}
   - component: {fileID: 4760811568559661154}
   - component: {fileID: 3006185332062082373}
-  - component: {fileID: 195447631596186641}
   - component: {fileID: 3767040129890908730}
-  m_Layer: 0
+  - component: {fileID: 8667245330613548255}
+  m_Layer: 8
   m_Name: Feather
-  m_TagString: Untagged
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -743,28 +743,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7666607028881045614}
   m_Mesh: {fileID: 0}
---- !u!64 &195447631596186641
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7666607028881045614}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!114 &3767040129890908730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,3 +759,24 @@ MonoBehaviour:
   lifetime: 2
   amplitude: 5
   frequency: -15
+--- !u!65 &8667245330613548255
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666607028881045614}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0954856, y: 0.07490694, z: 1.4725398}
+  m_Center: {x: -0.12983511, y: 0.03745347, z: 0.7362699}

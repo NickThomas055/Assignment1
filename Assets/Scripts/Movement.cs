@@ -5,8 +5,15 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed = 5.0f; // Adjust the speed as needed
+    public float jumpHeight = 5.0f;
 
     void Update()
+    {
+        Walk();
+        Jump();
+    }
+
+    void Walk()
     {
         // Get input from the player
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -16,7 +23,7 @@ public class Movement : MonoBehaviour
         Vector3 movement = new Vector3(horizontalInput, 0.0f, verticalInput);
         if (movement == Vector3.zero )
         {
-            print("idle");
+           
             //play animation
             if(transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Walk"))
                 transform.GetComponent<Animator>().Play("Idle_A");
@@ -25,8 +32,8 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            print("moving");
-            transform.GetComponent<Animator>().Play("Walk");
+           if(transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle_A"))
+                transform.GetComponent<Animator>().Play("Walk");
         }
         // Normalize the movement vector to prevent faster diagonal movement
         if (movement.magnitude > 1f)
@@ -35,6 +42,32 @@ public class Movement : MonoBehaviour
         }
 
         // Move the object
-        transform.Translate(movement * speed * Time.deltaTime);
+        
+        transform.GetComponent<Rigidbody>().AddRelativeForce(movement * speed * Time.deltaTime);
+    }
+    void Jump(){
+        //while the player is jumping, no other animation can play
+
+        //check if the user is holding spacebar
+        if(Input.GetKey(KeyCode.Space)){
+            //if the downwards velocity is greater than 0, the player is falling, so he can't jump and will fall slower
+            if (transform.GetComponent<Rigidbody>().velocity.y < 0)
+            {
+                print("falling");
+                transform.GetComponent<Rigidbody>().AddForce(Vector3.up * 0.1f, ForceMode.Impulse);
+                //only play animation if the player is not already falling
+                if(!transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Fly"))
+                    transform.gameObject.GetComponent<Animator>().Play("Fly");
+            }
+            //if the player is not falling, he can jump
+            else if(transform.GetComponent<Rigidbody>().velocity.y == 0)
+            {
+                print("jumping");
+                transform.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+                transform.gameObject.GetComponent<Animator>().Play("Jump");
+            }
+        }
+        
+
     }
 }

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Looking : MonoBehaviour
 {
-    public float sensitivity = 2.0f; // Adjust the sensitivity as needed
-    public Transform playerBody; // Reference to the player's body or object you want to rotate
+    public float sensitivity = 2.0f; 
+    public Transform playerBody; 
 
     private float verticalRotation = 0.0f;
 
@@ -19,7 +19,8 @@ public class Looking : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
         // Rotate the player's body horizontally based on mouse movement
-        transform.Rotate(0,mouseX * sensitivity,0);
+        transform.GetComponent<Rigidbody>().AddRelativeTorque(0,mouseX * sensitivity,0);
+        //transform.Rotate(0,mouseX * sensitivity,0);
 
         // Rotate the camera vertically based on mouse movement
         //verticalRotation -= mouseY;

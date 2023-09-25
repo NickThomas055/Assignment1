@@ -5,8 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed;
-    public GameObject fireballPrefab;
-    public GameObject specialFireballPrefab;
+    public GameObject projectilePrefab;
+    public GameObject specialprojectilePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -19,21 +19,27 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //when the pllayer presses left mouse button, the player shoots a fireball, when he presses the right mouse button, he shoots a special fireball
+        //when the pllayer presses left mouse button, the player shoots a projectile, when he presses the right mouse button, he shoots a special projectile
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            print("fireball");
-            GameObject fireball = Instantiate(fireballPrefab, transform.position, transform.rotation);
+            print("projectile");
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
             transform.GetComponent<Animator>().Play("Attack");
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
            
-            GameObject fireball = Instantiate(specialFireballPrefab, transform.position, transform.rotation);
+            GameObject projectile = Instantiate(specialprojectilePrefab, transform.position, transform.rotation);
             transform.GetComponent<Animator>().Play("Clicked");
         }
     //play idle animation when player is not moving
-
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Projectile"))
+            {
+                GetComponent<Life>().life -= 1;
+            }
+        }
 
         
         
