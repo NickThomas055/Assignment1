@@ -14,21 +14,14 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         // move the enemy forwards
-        GetComponent<Rigidbody>().position += transform.forward * Time.deltaTime * 0.5f;
+        //GetComponent<Rigidbody>().position += transform.forward * Time.deltaTime * 0.5f;
         
     }
     private void OnDestroy()
     {
         EnemyManager.instance.RemoveEnemy(this);
+        Destroy(Instantiate(Resources.Load("KillEffect"), transform.position, Quaternion.identity),0.5f);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        
-        if (other.gameObject.tag == "PlayerProjectile")
-        {
-            GetComponent<Life>().life -= 1;
-            Destroy(other.gameObject);
-        }
-    }
+    
 }

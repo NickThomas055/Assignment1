@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         WaveManager.instance.waves.Add(this);
-        InvokeRepeating("Spawn", 0, 1);
+        InvokeRepeating("Spawn", 0, 2);
         Invoke("EndSpawner", 10);
     }
 
@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
 
     void Spawn(){
         // Generate a random position within a certain range of the spawner
-        Vector3 position = new Vector3(transform.position.x + Random.Range(-3 , 3), transform.position.y, transform.position.z + Random.Range(-3, 3));
+        Vector3 position = new Vector3(transform.position.x + Random.Range(-5 , 5), transform.position.y, transform.position.z + Random.Range(-3, 3));
 
         
 

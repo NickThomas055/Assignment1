@@ -11,6 +11,10 @@ public class Movement : MonoBehaviour
     {
         Walk();
         Jump();
+        //when the player lands, Instantiate the DustEffect
+        
+
+
     }
 
     void Walk()
@@ -63,9 +67,11 @@ public class Movement : MonoBehaviour
             else if(transform.GetComponent<Rigidbody>().velocity.y == 0)
             {
                 print("jumping");
+                Destroy(Instantiate(Resources.Load("DustEffect"), transform.position, Quaternion.identity),0.5f);
                 transform.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
                 transform.gameObject.GetComponent<Animator>().Play("Jump");
             }
+        
         }
         
 
